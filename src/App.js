@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Transition } from "react-transition-group";
 
 import Modal from "./components/Modal/Modal";
 import Backdrop from "./components/Backdrop/Backdrop";
@@ -8,6 +9,7 @@ import "./App.css"
 
 const App = () => {
   const [showModal, setShowModal] = useState(false)
+  const [showBlock, setShowBlock] = useState(false)
 
   const openModalHandler = () => {
     setShowModal(true)
@@ -21,9 +23,38 @@ const App = () => {
     <div className="App">
       <h1>React Animations</h1>
 
-      {showModal ? <Modal show={showModal} closed={closeModalHandler} /> : null}
-      {showModal ? <Backdrop show={showModal}  /> : null}
+      <button className="Button" onClick={() => {setShowBlock((prevState) => !prevState)}}>Toggle</button>
+      <br />
 
+      <Transition 
+        in={showBlock}
+        timeout={1000}
+        mountOnEnter
+        unmountOnExit
+        onEnter={() => {console.log("OnEnter")}}
+        onEntering={() => {console.log("OnEntering")}}
+        onEntered={() => {console.log("OnEntered")}}
+        onExit={() => {console.log("OnExit")}}
+        onExiting={() => {console.log("OnExiting")}}
+        onExited={() => {console.log("OnExited")}}
+      >
+        {
+          showBlock => (
+            <div style={{
+              width: "100px",
+              height: "100px",
+              backgroundColor: "red",
+              margin: "auto",
+              opacity: showBlock === "exiting" ? 0 : 1,
+              transition: "opacity 1s ease-out"
+            }}></div>
+          )
+        }
+      </Transition>
+
+      <Modal show={showModal} closed={closeModalHandler} />
+      <Backdrop show={showModal}  />
+      
       <button className="Button" onClick={openModalHandler}>Open Modal</button>
       <h3>Animating Lists</h3>
 
@@ -33,6 +64,9 @@ const App = () => {
 }
 
 export default App
+
+// libraries
+// npm i react-transition-group
 
 /**
  * - limitations of css animations with React -
