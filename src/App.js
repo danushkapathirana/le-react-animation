@@ -26,7 +26,18 @@ const App = () => {
       <button className="Button" onClick={() => {setShowBlock((prevState) => !prevState)}}>Toggle</button>
       <br />
 
-      <Transition in={showBlock} timeout={1000} mountOnEnter unmountOnExit>
+      <Transition 
+        in={showBlock}
+        timeout={1000}
+        mountOnEnter
+        unmountOnExit
+        onEnter={() => {console.log("OnEnter")}}
+        onEntering={() => {console.log("OnEntering")}}
+        onEntered={() => {console.log("OnEntered")}}
+        onExit={() => {console.log("OnExit")}}
+        onExiting={() => {console.log("OnExiting")}}
+        onExited={() => {console.log("OnExited")}}
+      >
         {
           showBlock => (
             <div style={{
