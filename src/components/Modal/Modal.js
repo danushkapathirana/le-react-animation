@@ -10,6 +10,14 @@ const transitionTimings = {
 
 const Modal = (props) => {
     return(
+        // <CSSTransition classNames={{
+        //     enter: "",
+        //     enterActive: "",
+        //     exit: "",
+        //     exitActive: "",
+        //     appear: "",
+        //     appearActive: ""
+        // }}>
         <CSSTransition in={props.show} timeout={transitionTimings} mountOnEnter unmountOnExit classNames="fade-slide">
             {
                 <div className="Modal">
