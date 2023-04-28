@@ -41,9 +41,9 @@ const App = () => {
         }
       </Transition>
 
-      {showModal ? <Modal show={showModal} closed={closeModalHandler} /> : null}
-      {showModal ? <Backdrop show={showModal}  /> : null}
-
+      <Modal show={showModal} closed={closeModalHandler} />
+      <Backdrop show={showModal}  />
+      
       <button className="Button" onClick={openModalHandler}>Open Modal</button>
       <h3>Animating Lists</h3>
 
